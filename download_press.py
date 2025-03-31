@@ -1,12 +1,16 @@
 import feedparser
 import requests
 import csv
+import os
 
 # Base URL for the RSS feed (fetches results in English with "sustainable economy" keyword)
 base_url = "https://ec.europa.eu/commission/presscorner/api/rss?search?language=en&documenttype=1&text=sustainable%20economy&policyarea=&pagesize=100&page="
 
 # Output CSV file
 csv_filename = "all_press_releases.csv"
+save_folder = 'data/pdf_files'
+if not os.path.exists(save_folder):
+    os.makedirs(save_folder)
 
 # Open CSV file for writing
 with open(csv_filename, mode="w", newline="", encoding="utf-8") as file:
@@ -36,7 +40,7 @@ with open(csv_filename, mode="w", newline="", encoding="utf-8") as file:
             ip_id = guid.split('/')[-1]
             url="https://ec.europa.eu/commission/presscorner/api/files/document/print/en/{0}/{1}.pdf".format(ip_id, ip_id.upper())
             response = requests.get(url)
-            with open(f'pdf_files/{ip_id}.pdf', 'wb') as f:
+            with open(f'{save_folder}/{ip_id}.pdf', 'wb') as f:
                 f.write(response.content)
             writer.writerow([ip_id, title])
 
