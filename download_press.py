@@ -37,6 +37,7 @@ with open(csv_filename, mode="w", newline="", encoding="utf-8") as file:
         for entry in feed.entries:
             title = entry.title
             guid=entry.guid
+            print(guid)
             ip_id = guid.split('/')[-1]
             url="https://ec.europa.eu/commission/presscorner/api/files/document/print/en/{0}/{1}.pdf".format(ip_id, ip_id.upper())
             response = requests.get(url)
