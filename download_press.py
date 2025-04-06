@@ -17,6 +17,8 @@ def clean_filename(s):
     s = s.strip()
     s = s.replace(" ", "_")  # optional: replace spaces with underscores
     s = s.replace('€', 'Euro')  # Replace € with 'Euro'
+    s = s.replace("\n","_")
+    s = s.replace("\r","_")
     return s[:100]  # Limit length to avoid Windows path issues
 
 #date in title cleaning function
@@ -41,8 +43,8 @@ def format_published_date(published_date):
    
 
 # Starting period
-start_date = datetime(2018, 1, 1)
-end_date = datetime(2018, 12, 31)  # Your specified end date
+start_date = datetime(2004, 5, 1)
+end_date = datetime(2025, 4, 6)  # Your specified end date
 
 # Function to format date
 def format_date(dt):
