@@ -128,4 +128,3 @@ with open(csv_filename, mode="w", newline="", encoding="utf-8") as file:
         current_start = current_end + timedelta(days=1)
 
 print("\n🎯 Finished downloading all press releases dynamically!")
-
